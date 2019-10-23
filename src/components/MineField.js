@@ -2,12 +2,12 @@ import React from 'react'
 import {View, StyleSheet} from 'react-native'
 import Field from './Field'
 
-export default prop =>{
+export default props =>{
     const rows = props.board.map((row,r)=>{
         const columns = row.map((field,c)=>{
-            return <Field {...field} key={c}/>
+            return <Field {...field} key={c} OnOpen={()=>props.OnOpenField(r,c)} OnSelect={()=>props.onSelectField(r,c)}/>
         })
-        return <View key={r}>{columns}</View>
+        return <View key={r} style={{flexDirection:'row'}}>{columns}</View>
     })
 
     return <View style={styles.container}>{rows}</View>
@@ -15,7 +15,6 @@ export default prop =>{
 
 const styles = StyleSheet.create({
     container:{
-        flexDirection:'row', 
         backgroundColor:'#EEE'
     }
 })
